@@ -156,7 +156,7 @@ const FOCUS_SLIDES: CarouselSlide[] = [
     badge: "Cozy Space",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#0F172A" stroke="#1E293B" strokeWidth="1.5"/>
         <rect x="20" y="20" width="360" height="15" rx="3" fill="#334155"/>
         <rect x="40" y="5" width="20" height="15" fill="#EF4444"/>
         <rect x="65" y="0" width="15" height="20" fill="#3B82F6"/>
@@ -164,20 +164,20 @@ const FOCUS_SLIDES: CarouselSlide[] = [
         <rect x="0" y="175" width="400" height="65" rx="2" fill="#1E293B"/>
         <rect x="0" y="175" width="400" height="3" fill="#334155"/>
         <rect x="70" y="145" width="100" height="55" rx="3" fill="#FFFBEB" transform="skewX(-15)"/>
-        <line x1="82" y1="152" x2="142" y2="152" stroke="#D1FAE5" stroke-width="2"/>
-        <line x1="80" y1="165" x2="145" y2="165" stroke="#E2E8F0" stroke-width="1.5"/>
-        <line x1="78" y1="178" x2="138" y2="178" stroke="#E2E8F0" stroke-width="1.5"/>
-        <path d="M 270 175 Q 272 105 250 85" stroke="#475569" stroke-width="5" fill="none"/>
+        <line x1="82" y1="152" x2="142" y2="152" stroke="#D1FAE5" strokeWidth="2"/>
+        <line x1="80" y1="165" x2="145" y2="165" stroke="#E2E8F0" strokeWidth="1.5"/>
+        <line x1="78" y1="178" x2="138" y2="178" stroke="#E2E8F0" strokeWidth="1.5"/>
+        <path d="M 270 175 Q 272 105 250 85" stroke="#475569" strokeWidth="5" fill="none"/>
         <rect x="235" y="70" width="28" height="18" rx="4" fill="#3B82F6" transform="rotate(15, 235, 70)"/>
         <polygon points="240,84 100,240 380,240" fill="url(#lampLightGlow)" opacity="0.12"/>
         <rect x="185" y="148" width="23" height="30" rx="3" fill="#F59E0B"/>
-        <path d="M 208 153 A 5 5 0 0 1 208 171" stroke="#F59E0B" stroke-width="2.5" fill="none"/>
-        <path d="M 191 141 Q 194 136 191 131" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M 198 143 Q 201 138 198 133" stroke="#F59E0B" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M 208 153 A 5 5 0 0 1 208 171" stroke="#F59E0B" strokeWidth="2.5" fill="none"/>
+        <path d="M 191 141 Q 194 136 191 131" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" fill="none" opacity="0.6"/>
+        <path d="M 198 143 Q 201 138 198 133" stroke="#F59E0B" strokeWidth="1.2" strokeLinecap="round" fill="none" opacity="0.6"/>
         <defs>
           <radialGradient id="lampLightGlow" cx="60%" cy="30%" r="80%">
-            <stop offset="0%" stop-color="#FDE047"/>
-            <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+            <stop offset="0%" stopColor="#FDE047"/>
+            <stop offset="100%" stopColor="#0F172A" stopOpacity="0"/>
           </radialGradient>
         </defs>
       </svg>
@@ -190,21 +190,21 @@ const FOCUS_SLIDES: CarouselSlide[] = [
     badge: "Discipline",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#020210" stroke="#1E1B4B" stroke-width="1.5"/>
-        <line x1="0" y1="60" x2="400" y2="60" stroke="#1E1B4B" stroke-width="0.5"/>
-        <line x1="0" y1="120" x2="400" y2="120" stroke="#1E1B4B" stroke-width="0.5"/>
-        <line x1="0" y1="180" x2="400" y2="180" stroke="#1E1B4B" stroke-width="0.5"/>
-        <line x1="100" y1="0" x2="100" y2="240" stroke="#1E1B4B" stroke-width="0.5"/>
-        <line x1="200" y1="0" x2="200" y2="240" stroke="#1E1B4B" stroke-width="0.5"/>
-        <line x1="300" y1="0" x2="300" y2="240" stroke="#1E1B4B" stroke-width="0.5"/>
-        <polygon points="200,40 265,70 265,135 200,180 135,135 135,70" fill="#111827" fill-opacity="0.5" stroke="#6366F1" stroke-width="3" stroke-linejoin="round"/>
+        <rect width="100%" height="100%" rx="8" fill="#020210" stroke="#1E1B4B" strokeWidth="1.5"/>
+        <line x1="0" y1="60" x2="400" y2="60" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <line x1="0" y1="120" x2="400" y2="120" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <line x1="0" y1="180" x2="400" y2="180" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <line x1="100" y1="0" x2="100" y2="240" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <line x1="200" y1="0" x2="200" y2="240" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <line x1="300" y1="0" x2="300" y2="240" stroke="#1E1B4B" strokeWidth="0.5"/>
+        <polygon points="200,40 265,70 265,135 200,180 135,135 135,70" fill="#111827" fillOpacity={0.5} stroke="#6366F1" strokeWidth={3} strokeLinejoin="round"/>
         <rect x="180" y="100" width="40" height="28" rx="5" fill="#EF4444"/>
-        <path d="M 190 100 L 190 85 A 10 10 0 0 1 210 85 L 210 100" stroke="#6366F1" stroke-width="4" fill="none"/>
+        <path d="M 190 100 L 190 85 A 10 10 0 0 1 210 85 L 210 100" stroke="#6366F1" strokeWidth={4} fill="none"/>
         <circle cx="200" cy="114" r="4" fill="#FFF"/>
-        <line x1="200" y1="116" x2="200" y2="124" stroke="#FFF" stroke-width="2"/>
-        <circle cx="200" cy="110" r="70" stroke="#6366F1" stroke-dasharray="3,3" opacity="0.3"/>
-        <circle cx="200" cy="110" r="95" stroke="#EF4444" stroke-dasharray="1,6" opacity="0.2"/>
-        <text x="200" y="212" font-family="'JetBrains Mono', Courier, monospace" font-size="10" fill="#818CF8" font-weight="black" text-anchor="middle" letter-spacing="2">DOPAMINE FEED SHUTDOWN</text>
+        <line x1="200" y1="116" x2="200" y2="124" stroke="#FFF" strokeWidth={2}/>
+        <circle cx="200" cy="110" r="70" stroke="#6366F1" strokeDasharray="3,3" opacity="0.3"/>
+        <circle cx="200" cy="110" r="95" stroke="#EF4444" strokeDasharray="1,6" opacity="0.2"/>
+        <text x="200" y="212" fontFamily="'JetBrains Mono', Courier, monospace" fontSize="10" fill="#818CF8" fontWeight="black" textAnchor="middle" letterSpacing="2">DOPAMINE FEED SHUTDOWN</text>
       </svg>
     )
   },
@@ -215,18 +215,18 @@ const FOCUS_SLIDES: CarouselSlide[] = [
     badge: "Chemistry",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#022C22" stroke="#064E3B" stroke-width="1.5"/>
-        <polygon points="200,45 235,65 235,105 200,125 165,105 165,65" fill="none" stroke="#10B981" stroke-width="2"/>
-        <polygon points="200,125 235,145 235,185 200,205 165,185 165,145" fill="none" stroke="#059669" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#022C22" stroke="#064E3B" strokeWidth="1.5"/>
+        <polygon points="200,45 235,65 235,105 200,125 165,105 165,65" fill="none" stroke="#10B981" strokeWidth={2}/>
+        <polygon points="200,125 235,145 235,185 200,205 165,185 165,145" fill="none" stroke="#059669" strokeWidth={1.5}/>
         <circle cx="200" cy="45" r="4" fill="#34D399"/>
         <circle cx="235" cy="65" r="4" fill="#34D399"/>
         <circle cx="165" cy="65" r="4" fill="#10B981"/>
         <circle cx="200" cy="125" r="5" fill="#F59E0B"/>
         <rect x="130" y="115" width="20" height="20" rx="3" fill="#1E293B"/>
-        <text x="140" y="129" font-family="sans-serif" font-size="11" fill="#FFF" font-weight="bold" text-anchor="middle">H</text>
+        <text x="140" y="129" fontFamily="sans-serif" fontSize="11" fill="#FFF" fontWeight="bold" textAnchor="middle">H</text>
         <rect x="250" y="115" width="20" height="20" rx="3" fill="#1E293B"/>
-        <text x="260" y="129" font-family="sans-serif" font-size="11" fill="#34D399" font-weight="bold" text-anchor="middle">O</text>
-        <text x="200" y="222" font-family="'JetBrains Mono', Courier, monospace" font-size="9" fill="#059669" font-weight="bold" text-anchor="middle">REACTION: CATALYTIC HYDROGENATION</text>
+        <text x="260" y="129" fontFamily="sans-serif" fontSize="11" fill="#34D399" fontWeight="bold" text-anchor="middle">O</text>
+        <text x="200" y="222" fontFamily="'JetBrains Mono', Courier, monospace" fontSize="9" fill="#059669" fontWeight="bold" text-anchor="middle">REACTION: CATALYTIC HYDROGENATION</text>
       </svg>
     )
   }
@@ -240,19 +240,19 @@ const TIMETABLE_SLIDES: CarouselSlide[] = [
     badge: "Sunrise Action",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
-        <path d="M 50 160 Q 200 60 350 160" fill="none" stroke="#FDBA74" stroke-width="3" stroke-dasharray="4,4"/>
-        <path d="M 120 160 Q 200 100 280 160" fill="none" stroke="#FB923C" stroke-width="5"/>
+        <rect width="100%" height="100%" rx="8" fill="#F8FAFC" stroke="#E2E8F0" strokeWidth="1.5"/>
+        <path d="M 50 160 Q 200 60 350 160" fill="none" stroke="#FDBA74" strokeWidth="3" strokeDasharray="4,4"/>
+        <path d="M 120 160 Q 200 100 280 160" fill="none" stroke="#FB923C" strokeWidth="5"/>
         <circle cx="200" cy="120" r="28" fill="#F97316"/>
         <circle cx="200" cy="120" r="24" fill="#FBBF24"/>
-        <line x1="200" y1="80" x2="200" y2="60" stroke="#FBBF24" stroke-width="4" stroke-linecap="round"/>
-        <line x1="200" y1="160" x2="200" y2="180" stroke="#FBBF24" stroke-width="4" stroke-linecap="round"/>
-        <line x1="160" y1="120" x2="140" y2="120" stroke="#FBBF24" stroke-width="4" stroke-linecap="round"/>
-        <line x1="240" y1="120" x2="260" y2="120" stroke="#FBBF24" stroke-width="4" stroke-linecap="round"/>
+        <line x1="200" y1="80" x2="200" y2="60" stroke="#FBBF24" strokeWidth="4" strokeLinecap="round"/>
+        <line x1="200" y1="160" x2="200" y2="180" stroke="#FBBF24" strokeWidth="4" strokeLinecap="round"/>
+        <line x1="160" y1="120" x2="140" y2="120" stroke="#FBBF24" strokeWidth="4" strokeLinecap="round"/>
+        <line x1="240" y1="120" x2="260" y2="120" stroke="#FBBF24" strokeWidth="4" strokeLinecap="round"/>
         <circle cx="100" cy="180" r="18" fill="#6366F1"/>
-        <path d="M 92 165 L 108 165" stroke="#FFF" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 92 165 L 108 165" stroke="#FFF" strokeWidth="3" strokeLinecap="round"/>
         <rect x="96" y="174" width="8" height="12" rx="1" fill="#FFF"/>
-        <text x="200" y="215" font-family="'JetBrains Mono', monospace" font-size="11" fill="#475569" font-weight="black" text-anchor="middle">WAKE UP AT 7:00 AM STRIKE</text>
+        <text x="200" y="215" fontFamily="'JetBrains Mono', monospace" fontSize="11" fill="#475569" fontWeight="black" textAnchor="middle">WAKE UP AT 7:00 AM STRIKE</text>
       </svg>
     )
   },
@@ -263,29 +263,29 @@ const TIMETABLE_SLIDES: CarouselSlide[] = [
     badge: "Scheduling",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#0B0F19" stroke="#1E293B" stroke-width="1.5"/>
-        <rect x="20" y="20" width="170" height="90" rx="6" fill="#1E1B4B" stroke="#4C1D95" stroke-width="1"/>
+        <rect width="100%" height="100%" rx="8" fill="#0B0F19" stroke="#1E293B" strokeWidth="1.5"/>
+        <rect x="20" y="20" width="170" height="90" rx="6" fill="#1E1B4B" stroke="#4C1D95" strokeWidth="1"/>
         <circle cx="45" cy="45" r="12" fill="#818CF8"/>
-        <path d="M 41 45 L 44 48 L 49 43" stroke="#FFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="70" y="48" font-family="sans-serif" font-size="11" fill="#E0E7FF" font-weight="bold">Study Prep</text>
+        <path d="M 41 45 L 44 48 L 49 43" stroke="#FFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+        <text x="70" y="48" fontFamily="sans-serif" fontSize="11" fill="#E0E7FF" fontWeight="bold">Study Prep</text>
         <rect x="70" y="65" width="100" height="6" rx="3" fill="#312E81"/>
         <rect x="70" y="65" width="85" height="6" rx="3" fill="#818CF8"/>
-        <text x="70" y="86" font-family="sans-serif" font-size="10" fill="#C7D2FE">17:00 — Math Analysis</text>
-        <rect x="210" y="20" width="170" height="90" rx="6" fill="#062F2F" stroke="#0D9488" stroke-width="1"/>
-        <text x="230" y="50" font-family="sans-serif" font-size="12" fill="#2DD4BF" font-weight="extrabold">📱 Allowed Break</text>
-        <text x="230" y="70" font-family="sans-serif" font-size="10" fill="#85E2D6">07:00 — Free scrolling</text>
+        <text x="70" y="86" fontFamily="sans-serif" fontSize="10" fill="#C7D2FE">17:00 — Math Analysis</text>
+        <rect x="210" y="20" width="170" height="90" rx="6" fill="#062F2F" stroke="#0D9488" strokeWidth="1"/>
+        <text x="230" y="50" fontFamily="sans-serif" fontSize="12" fill="#2DD4BF" fontWeight="extrabold">📱 Allowed Break</text>
+        <text x="230" y="70" fontFamily="sans-serif" fontSize="10" fill="#85E2D6">07:00 — Free scrolling</text>
         <rect x="230" y="85" width="130" height="8" rx="4" fill="#134E4A"/>
-        <rect x="20" y="130" width="360" height="85" rx="6" fill="#1E293B" stroke="#334155" stroke-width="1"/>
-        <text x="35" y="155" font-family="sans-serif" font-size="11" fill="#94A3B8" font-weight="bold">Self-Growth Progression Gauge</text>
+        <rect x="20" y="130" width="360" height="85" rx="6" fill="#1E293B" stroke="#334155" strokeWidth="1"/>
+        <text x="35" y="155" fontFamily="sans-serif" fontSize="11" fill="#94A3B8" fontWeight="bold">Self-Growth Progression Gauge</text>
         <rect x="35" y="175" width="330" height="15" rx="4" fill="#0F172A"/>
         <rect x="35" y="175" width="240" height="15" rx="4" fill="url(#bentoGrad)"/>
         <defs>
           <linearGradient id="bentoGrad" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#4F46E5"/>
-            <stop offset="100%" stop-color="#10B981"/>
+            <stop offset="0%" stopColor="#4F46E5"/>
+            <stop offset="100%" stopColor="#10B981"/>
           </linearGradient>
         </defs>
-        <text x="200" y="187" font-family="-apple-system, sans-serif" font-size="9" fill="#FFF" font-weight="bold" text-anchor="middle">75% HARMONIZATION RATE</text>
+        <text x="200" y="187" fontFamily="-apple-system, sans-serif" fontSize="9" fill="#FFF" fontWeight="bold" textAnchor="middle">75% HARMONIZATION RATE</text>
       </svg>
     )
   },
@@ -296,17 +296,17 @@ const TIMETABLE_SLIDES: CarouselSlide[] = [
     badge: "Rest Period",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#030712" stroke="#111827" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#030712" stroke="#111827" strokeWidth="1.5"/>
         <circle cx="120" cy="110" r="45" fill="#312E81" opacity="0.4"/>
         <path d="M 230 40 A 65 65 0 1 0 310 145 A 50 50 0 1 1 230 40 Z" fill="#FCE7F3"/>
         <circle cx="90" cy="50" r="2.5" fill="#FFF" opacity="0.8"/>
         <circle cx="140" cy="60" r="1.5" fill="#FFF" opacity="0.6"/>
         <circle cx="70" cy="140" r="2" fill="#FFF" opacity="0.9"/>
         <circle cx="150" cy="160" r="2.5" fill="#818CF8" opacity="0.5"/>
-        <path d="M 170 115 A 18 10 0 0 1 206 115" stroke="#818CF8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <text x="188" y="145" font-family="'JetBrains Mono', monospace" font-size="14" fill="#818CF8" font-weight="black" text-anchor="middle">Zzz</text>
-        <text x="210" y="132" font-family="'JetBrains Mono', monospace" font-size="10" fill="#818CF8">Zzz</text>
-        <text x="200" y="215" font-family="sans-serif" font-size="10" fill="#6B7280" font-weight="medium" text-anchor="middle">NO SCREENS RANGE: 22:00 — 07:00</text>
+        <path d="M 170 115 A 18 10 0 0 1 206 115" stroke="#818CF8" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        <text x="188" y="145" fontFamily="'JetBrains Mono', monospace" fontSize="14" fill="#818CF8" fontWeight="black" textAnchor="middle">Zzz</text>
+        <text x="210" y="132" fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#818CF8">Zzz</text>
+        <text x="200" y="215" fontFamily="sans-serif" fontSize="10" fill="#6B7280" fontWeight="medium" textAnchor="middle">NO SCREENS RANGE: 22:00 — 07:00</text>
       </svg>
     )
   }
@@ -320,19 +320,19 @@ const STORE_SLIDES: CarouselSlide[] = [
     badge: "Milestones",
      renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#0A0500" stroke="#2D1A00" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#0A0500" stroke="#2D1A00" strokeWidth="1.5"/>
         <ellipse cx="200" cy="165" rx="55" ry="15" fill="#D97706" opacity="0.2"/>
-        <rect x="175" y="160" width="50" height="30" rx="3" fill="#4B2700" stroke="#D97706" stroke-width="2"/>
+        <rect x="175" y="160" width="50" height="30" rx="3" fill="#4B2700" stroke="#D97706" strokeWidth="2"/>
         <rect x="182" y="167" width="36" height="15" rx="1" fill="#D97706" opacity="0.4"/>
-        <text x="200" y="179" font-family="monospace" font-size="8" fill="#FFF" font-weight="black" text-anchor="middle">#1 STREAK</text>
-        <rect x="194" y="115" width="12" height="45" fill="#F59E0B" stroke="#D97706" stroke-width="1"/>
-        <path d="M 155 70 C 155 120 245 120 245 70 Z" fill="#FBBF24" stroke="#F59E0B" stroke-width="3"/>
-        <path d="M 155 78 A 7 14 0 0 0 145 92 A 7 14 0 0 0 155 106" stroke="#FBBF24" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-        <path d="M 245 78 A 7 14 0 0 1 255 92 A 7 14 0 0 1 245 106" stroke="#FBBF24" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <text x="200" y="179" fontFamily="monospace" fontSize="8" fill="#FFF" fontWeight="black" textAnchor="middle">#1 STREAK</text>
+        <rect x="194" y="115" width="12" height="45" fill="#F59E0B" stroke="#D97706" strokeWidth="1"/>
+        <path d="M 155 70 C 155 120 245 120 245 70 Z" fill="#FBBF24" stroke="#F59E0B" strokeWidth="3"/>
+        <path d="M 155 78 A 7 14 0 0 0 145 92 A 7 14 0 0 0 155 106" stroke="#FBBF24" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
+        <path d="M 245 78 A 7 14 0 0 1 255 92 A 7 14 0 0 1 245 106" stroke="#FBBF24" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
         <polygon points="200,60 205,70 216,70 207,77 210,88 200,81 190,88 193,77 184,70 195,70" fill="#FFF"/>
         <circle cx="120" cy="60" r="4" fill="#FBBF24" opacity="0.8"/>
         <circle cx="280" cy="65" r="5" fill="#FBBF24" opacity="0.7"/>
-        <text x="200" y="215" font-family="sans-serif" font-size="11" fill="#FBBF24" font-weight="bold" text-anchor="middle">PREMIUM CROWN &amp; GOLD CODES</text>
+        <text x="200" y="215" fontFamily="sans-serif" fontSize="11" fill="#FBBF24" fontWeight="bold" textAnchor="middle">PREMIUM CROWN &amp; GOLD CODES</text>
       </svg>
     )
   },
@@ -343,20 +343,20 @@ const STORE_SLIDES: CarouselSlide[] = [
     badge: "Energizers",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#1E0E05" stroke="#451A03" stroke-width="1.5"/>
-        <rect x="175" y="45" width="50" height="135" rx="6" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#1E0E05" stroke="#451A03" strokeWidth="1.5"/>
+        <rect x="175" y="45" width="50" height="135" rx="6" fill="#F3F4F6" stroke="#9CA3AF" strokeWidth="1.5"/>
         <rect x="180" y="55" width="40" height="25" rx="3" fill="#D1D5DB"/>
         <circle cx="190" cy="67" r="4" fill="#DC2626"/>
         <circle cx="210" cy="67" r="4" fill="#059669"/>
         <rect x="185" y="115" width="30" height="28" rx="4" fill="#3F6212"/>
         <ellipse cx="200" cy="118" rx="12" ry="3" fill="#27272A"/>
-        <path d="M 200 80 L 200 115" stroke="#9CA3AF" stroke-width="3"/>
-        <ellipse cx="200" cy="165" rx="20" ry="10" fill="#FDBA74" stroke="#F59E0B" stroke-width="1"/>
+        <path d="M 200 80 L 200 115" stroke="#9CA3AF" strokeWidth="3"/>
+        <ellipse cx="200" cy="165" rx="20" ry="10" fill="#FDBA74" stroke="#F59E0B" strokeWidth="1"/>
         <ellipse cx="200" cy="162" rx="16" ry="7" fill="#78350F"/>
-        <path d="M 216 153 M 216 153 C 228 153 228 163 216 163" stroke="#FDBA74" stroke-width="2.5" fill="none"/>
-        <path d="M 197 105 Q 199 97 197 89" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M 203 105 Q 205 97 203 89" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <text x="200" y="215" font-family="'JetBrains Mono', Courier, monospace" font-size="10" fill="#FBBF24" font-weight="black" text-anchor="middle">EXCHANGE BALANCE: 80 PTS</text>
+        <path d="M 216 153 M 216 153 C 228 153 228 163 216 163" stroke="#FDBA74" strokeWidth="2.5" fill="none"/>
+        <path d="M 197 105 Q 199 97 197 89" stroke="#FFF" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.6"/>
+        <path d="M 203 105 Q 205 97 203 89" stroke="#FFF" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.6"/>
+        <text x="200" y="215" fontFamily="'JetBrains Mono', Courier, monospace" fontSize="10" fill="#FBBF24" fontWeight="black" textAnchor="middle">EXCHANGE BALANCE: 80 PTS</text>
       </svg>
     )
   },
@@ -367,8 +367,8 @@ const STORE_SLIDES: CarouselSlide[] = [
     badge: "Leisure Code",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#0B1329" stroke="#1E293B" stroke-width="1.5"/>
-        <rect x="130" y="70" width="140" height="85" rx="35" fill="#334155" stroke="#475569" stroke-width="4"/>
+        <rect width="100%" height="100%" rx="8" fill="#0B1329" stroke="#1E293B" strokeWidth="1.5"/>
+        <rect x="130" y="70" width="140" height="85" rx="35" fill="#334155" stroke="#475569" strokeWidth="4"/>
         <ellipse cx="160" cy="110" rx="12" ry="12" fill="#1E293B"/>
         <rect x="156" y="101" width="8" height="18" rx="2" fill="#94A3B8"/>
         <rect x="151" y="106" width="18" height="8" rx="2" fill="#94A3B8"/>
@@ -379,9 +379,9 @@ const STORE_SLIDES: CarouselSlide[] = [
         <circle cx="240" cy="118" r="4.5" fill="#10B981"/>
         <rect x="180" y="105" width="18" height="6" rx="1" fill="#475569"/>
         <rect x="202" y="105" width="18" height="6" rx="1" fill="#475569"/>
-        <path d="M 134 110 Q 110 160 140 180" stroke="#334155" stroke-width="8" stroke-linecap="round" fill="none"/>
-        <path d="M 266 110 Q 290 160 260 180" stroke="#334155" stroke-width="8" stroke-linecap="round" fill="none"/>
-        <text x="200" y="212" font-family="monospace" font-size="11" fill="#60A5FA" font-weight="black" text-anchor="middle">POINT DEBIT SYSTEM VALID</text>
+        <path d="M 134 110 Q 110 160 140 180" stroke="#334155" strokeWidth="8" strokeLinecap="round" fill="none"/>
+        <path d="M 266 110 Q 290 160 260 180" stroke="#334155" strokeWidth="8" strokeLinecap="round" fill="none"/>
+        <text x="200" y="212" fontFamily="monospace" fontSize="11" fill="#60A5FA" fontWeight="black" textAnchor="middle">POINT DEBIT SYSTEM VALID</text>
       </svg>
     )
   }
@@ -395,24 +395,24 @@ const COACH_SLIDES: CarouselSlide[] = [
     badge: "Smart Coach",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#020617" stroke="#1E293B" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#020617" stroke="#1E293B" strokeWidth="1.5"/>
         <circle cx="200" cy="110" r="30" fill="#312E81" opacity="0.3"/>
-        <ellipse cx="200" cy="110" rx="90" ry="45" stroke="#1E1B4B" stroke-width="1" opacity="0.4"/>
-        <ellipse cx="200" cy="110" rx="130" ry="65" stroke="#1E1B4B" stroke-width="1" opacity="0.2"/>
+        <ellipse cx="200" cy="110" rx="90" ry="45" stroke="#1E1B4B" strokeWidth="1" opacity="0.4"/>
+        <ellipse cx="200" cy="110" rx="130" ry="65" stroke="#1E1B4B" strokeWidth="1" opacity="0.2"/>
         <circle cx="200" cy="110" r="16" fill="#4F46E5" opacity="0.7"/>
         <circle cx="160" cy="90" r="12" fill="#818CF8"/>
         <circle cx="240" cy="90" r="12" fill="#818CF8"/>
         <circle cx="170" cy="140" r="10" fill="#6366F1"/>
         <circle cx="230" cy="140" r="10" fill="#6366F1"/>
-        <line x1="200" y1="110" x2="160" y2="90" stroke="#818CF8" stroke-width="1.5"/>
-        <line x1="200" y1="110" x2="240" y2="90" stroke="#818CF8" stroke-width="1.5"/>
-        <line x1="200" y1="110" x2="170" y2="140" stroke="#6366F1" stroke-width="1.5"/>
-        <line x1="200" y1="110" x2="230" y2="140" stroke="#6366F1" stroke-width="1.5"/>
-        <line x1="160" y1="90" x2="170" y2="140" stroke="#4F46E5" stroke-width="1" stroke-dasharray="2,2"/>
-        <line x1="240" y1="90" x2="230" y2="140" stroke="#4F46E5" stroke-width="1" stroke-dasharray="2,2"/>
+        <line x1="200" y1="110" x2="160" y2="90" stroke="#818CF8" strokeWidth="1.5"/>
+        <line x1="200" y1="110" x2="240" y2="90" stroke="#818CF8" strokeWidth="1.5"/>
+        <line x1="200" y1="110" x2="170" y2="140" stroke="#6366F1" strokeWidth="1.5"/>
+        <line x1="200" y1="110" x2="230" y2="140" stroke="#6366F1" strokeWidth="1.5"/>
+        <line x1="160" y1="90" x2="170" y2="140" stroke="#4F46E5" strokeWidth="1" strokeDasharray="2,2"/>
+        <line x1="240" y1="90" x2="230" y2="140" stroke="#4F46E5" strokeWidth="1" strokeDasharray="2,2"/>
         <polygon points="200,45 204,53 213,54 206,60 208,69 200,64 192,69 194,60 187,54 196,53" fill="#F59E0B" className="animate-pulse"/>
         <polygon points="120,120 123,126 130,127 125,132 126,139 120,135 114,139 115,132 110,127 117,126" fill="#38BDF8" className="animate-pulse"/>
-        <text x="200" y="215" font-family="'JetBrains Mono', monospace" font-size="10" fill="#818CF8" font-weight="black" text-anchor="middle">COGNITIVE ENGAGEMENT SPHERES</text>
+        <text x="200" y="215" fontFamily="'JetBrains Mono', monospace" fontSize="10" fill="#818CF8" fontWeight="black" textAnchor="middle">COGNITIVE ENGAGEMENT SPHERES</text>
       </svg>
     )
   },
@@ -423,20 +423,20 @@ const COACH_SLIDES: CarouselSlide[] = [
     badge: "Integrity",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#1C0A0A" stroke="#450A0A" stroke-width="1.5"/>
-        <rect x="80" y="45" width="85" height="115" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
-        <line x1="95" y1="65" x2="150" y2="65" stroke="#EF4444" stroke-width="2"/>
-        <line x1="95" y1="85" x2="140" y2="85" stroke="#FCA5A5" stroke-width="1.5"/>
-        <line x1="95" y1="105" x2="148" y2="105" stroke="#FCA5A5" stroke-width="1.5"/>
-        <line x1="95" y1="125" x2="135" y2="125" stroke="#FCA5A5" stroke-width="1.5"/>
-        <rect x="235" y="45" width="85" height="115" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" opacity="0.6"/>
-        <line x1="250" y1="65" x2="305" y2="65" stroke="#EF4444" stroke-width="2"/>
-        <line x1="250" y1="85" x2="295" y2="85" stroke="#FCA5A5" stroke-width="1.5"/>
+        <rect width="100%" height="100%" rx="8" fill="#1C0A0A" stroke="#450A0A" strokeWidth="1.5"/>
+        <rect x="80" y="45" width="85" height="115" rx="4" fill="#FEE2E2" stroke="#EF4444" strokeWidth="1.5"/>
+        <line x1="95" y1="65" x2="150" y2="65" stroke="#EF4444" strokeWidth="2"/>
+        <line x1="95" y1="85" x2="140" y2="85" stroke="#FCA5A5" strokeWidth="1.5"/>
+        <line x1="95" y1="105" x2="148" y2="105" stroke="#FCA5A5" strokeWidth="1.5"/>
+        <line x1="95" y1="125" x2="135" y2="125" stroke="#FCA5A5" strokeWidth="1.5"/>
+        <rect x="235" y="45" width="85" height="115" rx="4" fill="#FEE2E2" stroke="#EF4444" strokeWidth="1.5" opacity="0.6"/>
+        <line x1="250" y1="65" x2="305" y2="65" stroke="#EF4444" strokeWidth="2"/>
+        <line x1="250" y1="85" x2="295" y2="85" stroke="#FCA5A5" strokeWidth="1.5"/>
         <circle cx="210" cy="115" r="16" fill="#991B1B" opacity="0.3"/>
-        <line x1="175" y1="100" x2="225" y2="100" stroke="#EF4444" stroke-width="3"/>
+        <line x1="175" y1="100" x2="225" y2="100" stroke="#EF4444" strokeWidth="3"/>
         <path d="M 210 90 L 195 110 L 225 110 Z" fill="#EF4444" transform="rotate(180, 210, 100)"/>
-        <line x1="60" y1="130" x2="340" y2="70" stroke="#DC2626" stroke-width="5" stroke-linecap="round"/>
-        <text x="200" y="215" font-family="sans-serif" font-size="11" fill="#EF4444" font-weight="black" text-anchor="middle">ANTI-CHEAT PHOTO VERIFICATION</text>
+        <line x1="60" y1="130" x2="340" y2="70" stroke="#DC2626" strokeWidth="5" strokeLinecap="round"/>
+        <text x="200" y="215" fontFamily="sans-serif" fontSize="11" fill="#EF4444" fontWeight="black" textAnchor="middle">ANTI-CHEAT PHOTO VERIFICATION</text>
       </svg>
     )
   },
@@ -447,18 +447,18 @@ const COACH_SLIDES: CarouselSlide[] = [
     badge: "Analytics",
     renderSvg: () => (
       <svg width="100%" height="100%" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full max-h-[170px]">
-        <rect width="100%" height="100%" rx="8" fill="#0F172A" stroke="#1E293B" stroke-width="1.5"/>
-        <line x1="50" y1="30" x2="50" y2="180" stroke="#475569" stroke-width="2"/>
-        <line x1="50" y1="180" x2="350" y2="180" stroke="#475569" stroke-width="2"/>
-        <path d="M 50 140 L 100 110 L 150 130 L 200 70 L 250 85 L 300 40 L 350 45" fill="none" stroke="#10B981" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect width="100%" height="100%" rx="8" fill="#0F172A" stroke="#1E293B" strokeWidth="1.5"/>
+        <line x1="50" y1="30" x2="50" y2="180" stroke="#475569" strokeWidth="2"/>
+        <line x1="50" y1="180" x2="350" y2="180" stroke="#475569" strokeWidth="2"/>
+        <path d="M 50 140 L 100 110 L 150 130 L 200 70 L 250 85 L 300 40 L 350 45" fill="none" stroke="#10B981" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
         <circle cx="100" cy="110" r="5" fill="#34D399"/>
         <circle cx="200" cy="70" r="5" fill="#34D399"/>
         <circle cx="300" cy="40" r="5" fill="#10B981"/>
-        <path d="M 50 160 L 100 145 L 150 150 L 200 115 L 250 120 L 300 90 L 350 100" fill="none" stroke="#6366F1" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-        <text x="50" y="195" font-family="sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">Day 1</text>
-        <text x="200" y="195" font-family="sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">Day 7</text>
-        <text x="350" y="195" font-family="sans-serif" font-size="9" fill="#94A3B8" text-anchor="middle">Day 14</text>
-        <text x="200" y="218" font-family="sans-serif" font-size="10" fill="#34D399" font-weight="extrabold" text-anchor="middle">✦ OVERALL GROWTH EXPOSURE: +34%</text>
+        <path d="M 50 160 L 100 145 L 150 150 L 200 115 L 250 120 L 300 90 L 350 100" fill="none" stroke="#6366F1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6"/>
+        <text x="50" y="195" fontFamily="sans-serif" fontSize="9" fill="#94A3B8" textAnchor="middle">Day 1</text>
+        <text x="200" y="195" fontFamily="sans-serif" fontSize="9" fill="#94A3B8" textAnchor="middle">Day 7</text>
+        <text x="350" y="195" fontFamily="sans-serif" fontSize="9" fill="#94A3B8" textAnchor="middle">Day 14</text>
+        <text x="200" y="218" fontFamily="sans-serif" fontSize="10" fill="#34D399" fontWeight="extrabold" textAnchor="middle">✦ OVERALL GROWTH EXPOSURE: +34%</text>
       </svg>
     )
   }
