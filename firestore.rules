@@ -1,0 +1,103 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Reuseable safe helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Validation blueprints
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['points', 'streak', 'updatedAt'])
+        && data.keys().size() == 3
+        && data.points is int
+        && data.streak is int;
+    }
+
+    function isValidHabit(data) {
+      return data.keys().hasAll(['id', 'name', 'time', 'phoneAllowed', 'isCompulsoryUpload', 'points', 'completed'])
+        && data.id is string
+        && data.id.size() <= 64
+        && data.name is string
+        && data.name.size() <= 150
+        && data.time is string
+        && data.time.size() <= 10
+        && data.phoneAllowed is bool
+        && data.isCompulsoryUpload is bool
+        && data.points is int
+        && data.completed is bool;
+    }
+
+    function isValidChatMessage(data) {
+      return data.keys().hasAll(['id', 'role', 'content', 'timestamp'])
+        && data.id is string
+        && data.id.size() <= 128
+        && data.role is string
+        && data.role.size() <= 20
+        && data.content is string
+        && data.content.size() <= 5000
+        && data.timestamp is string
+        && data.timestamp.size() <= 30;
+    }
+
+    function isValidVoucher(data) {
+      return data.keys().hasAll(['code'])
+        && data.code is string
+        && data.code.size() <= 200;
+    }
+
+    function isValidPastUpload(data) {
+      return data.keys().hasAll(['description'])
+        && data.description is string
+        && data.description.size() <= 1000;
+    }
+
+    // Match statements for each collection path
+    match /users/{userId} {
+      allow get, create, update: if isOwner(userId) && isValidUserProfile(request.resource.data);
+      allow delete: if false;
+
+      match /habits/{habitId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(habitId);
+        allow create, update: if isOwner(userId) && isValidId(habitId) && isValidHabit(request.resource.data);
+        allow delete: if isOwner(userId) && isValidId(habitId);
+      }
+
+      match /chatMessages/{messageId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(messageId);
+        allow create: if isOwner(userId) && isValidId(messageId) && isValidChatMessage(request.resource.data);
+        allow delete: if isOwner(userId) && isValidId(messageId);
+      }
+
+      match /vouchers/{voucherId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(voucherId);
+        allow create: if isOwner(userId) && isValidId(voucherId) && isValidVoucher(request.resource.data);
+        allow delete: if isOwner(userId) && isValidId(voucherId);
+      }
+
+      match /pastUploads/{uploadId} {
+        allow list: if isOwner(userId);
+        allow get: if isOwner(userId) && isValidId(uploadId);
+        allow create: if isOwner(userId) && isValidId(uploadId) && isValidPastUpload(request.resource.data);
+        allow delete: if isOwner(userId) && isValidId(uploadId);
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "entities": {
+    "userProfile": {
+      "title": "User Profile",
+      "description": "Schema representing user profile statistics and details",
+      "type": "object",
+      "properties": {
+        "points": { "type": "integer", "description": "User's current total points balance" },
+        "streak": { "type": "integer", "description": "Active consecutive days streak" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last updated timestamp" }
+      },
+      "required": ["points", "streak", "updatedAt"]
+    },
+    "habit": {
+      "title": "Habit Definition",
+      "description": "User-defined custom or preset habits monitoring rules",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier of the habit" },
+        "name": { "type": "string", "description": "Habit descriptive title" },
+        "time": { "type": "string", "description": "Start time HH:MM format" },
+        "endTime": { "type": "string", "description": "End time HH:MM format" },
+        "phoneAllowed": { "type": "boolean", "description": "Whether phone distraction is allowed during this period" },
+        "isCompulsoryUpload": { "type": "boolean", "description": "Whether notes or photo upload is mandatory to complete" },
+        "points": { "type": "integer", "description": "Points awarded on completion" },
+        "completed": { "type": "boolean", "description": "Completion status of the habit for today" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last modified time" }
+      },
+      "required": ["id", "name", "time", "phoneAllowed", "isCompulsoryUpload", "points", "completed"]
+    },
+    "chatMessage": {
+      "title": "Chat Message",
+      "description": "Coach Chat Message log for assistant guidance history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Message unique ID" },
+        "role": { "type": "string", "description": "Role of the participant: user or assistant" },
+        "content": { "type": "string", "description": "Response transcript message payload content" },
+        "timestamp": { "type": "string", "description": "Readable localized message timestamp" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "True creation timestamp" }
+      },
+      "required": ["id", "role", "content", "timestamp"]
+    },
+    "voucher": {
+      "title": "Purchased Voucher",
+      "description": "Redeemed rewards marketplace vouchers",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string", "description": "Voucher descriptor and redemption string" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp value" }
+      },
+      "required": ["code"]
+    },
+    "pastUpload": {
+      "title": "Past Approved Notes",
+      "description": "Historic notes approved descriptions to prevent duplicate cheating",
+      "type": "object",
+      "properties": {
+        "description": { "type": "string", "description": "Extracted visual keywords in study materials" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Added timestamp" }
+      },
+      "required": ["description"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "userProfile",
+      "description": "Primary user profile node in root collection"
+    },
+    "/users/{userId}/habits/{habitId}": {
+      "schema": "habit",
+      "description": "Subcollection store of user habits"
+    },
+    "/users/{userId}/chatMessages/{messageId}": {
+      "schema": "chatMessage",
+      "description": "Historical chat conversation tracking logs and insights"
+    },
+    "/users/{userId}/vouchers/{voucherId}": {
+      "schema": "voucher",
+      "description": "Purchased marketplace keys"
+    },
+    "/users/{userId}/pastUploads/{uploadId}": {
+      "schema": "pastUpload",
+      "description": "Visual descriptors of past verified study notes"
+    }
+  }
+}

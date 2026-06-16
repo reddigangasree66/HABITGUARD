@@ -38,6 +38,27 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { PRESET_PHOTOS, PresetPhoto } from "./utils/presets";
+import { 
+  auth, 
+  db, 
+  handleFirestoreError, 
+  OperationType 
+} from "./firebase";
+import { 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut, 
+  onAuthStateChanged,
+  User as FirebaseUser
+} from "firebase/auth";
+import { 
+  doc, 
+  getDoc, 
+  setDoc, 
+  collection, 
+  getDocs, 
+  deleteDoc
+} from "firebase/firestore";
 
 interface Habit {
   id: string;
@@ -225,8 +246,8 @@ const FOCUS_SLIDES: CarouselSlide[] = [
         <rect x="130" y="115" width="20" height="20" rx="3" fill="#1E293B"/>
         <text x="140" y="129" fontFamily="sans-serif" fontSize="11" fill="#FFF" fontWeight="bold" textAnchor="middle">H</text>
         <rect x="250" y="115" width="20" height="20" rx="3" fill="#1E293B"/>
-        <text x="260" y="129" fontFamily="sans-serif" fontSize="11" fill="#34D399" fontWeight="bold" text-anchor="middle">O</text>
-        <text x="200" y="222" fontFamily="'JetBrains Mono', Courier, monospace" fontSize="9" fill="#059669" fontWeight="bold" text-anchor="middle">REACTION: CATALYTIC HYDROGENATION</text>
+        <text x="260" y="129" fontFamily="sans-serif" fontSize="11" fill="#34D399" fontWeight="bold" textAnchor="middle">O</text>
+        <text x="200" y="222" fontFamily="'JetBrains Mono', Courier, monospace" fontSize="9" fill="#059669" fontWeight="bold" textAnchor="middle">REACTION: CATALYTIC HYDROGENATION</text>
       </svg>
     )
   }
@@ -465,6 +486,11 @@ const COACH_SLIDES: CarouselSlide[] = [
 ];
 
 export default function App() {
+  // --- Firebase Auth & Firestore States ---
+  const [user, setUser] = useState<FirebaseUser | null>(null);
+  const [isAuthLoading, setIsAuthLoading] = useState<boolean>(true);
+  const [isSyncing, setIsSyncing] = useState<boolean>(false);
+
   // --- Persistent States from LocalStorage ---
   const [habits, setHabits] = useState<Habit[]>(() => {
     const saved = localStorage.getItem("habit_guard_habits");
@@ -705,6 +731,182 @@ export default function App() {
     localStorage.setItem("habit_guard_past_uploads", JSON.stringify(pastApprovedDescriptions));
   }, [pastApprovedDescriptions]);
 
+  // --- Firebase Sync Mechanism ---
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      setUser(firebaseUser);
+      setIsAuthLoading(true);
+      if (firebaseUser) {
+        setIsSyncing(true);
+        const uid = firebaseUser.uid;
+        try {
+          const userDocRef = doc(db, "users", uid);
+          const userSnap = await getDoc(userDocRef);
+
+          if (userSnap.exists()) {
+            // User profile exists in Firestore, load state
+            const userData = userSnap.data();
+            if (userData.points !== undefined) setPoints(userData.points);
+            if (userData.streak !== undefined) setStreak(userData.streak);
+
+            // Fetch habits
+            const habitsSnap = await getDocs(collection(db, "users", uid, "habits"));
+            if (!habitsSnap.empty) {
+              const loadedHabits: Habit[] = [];
+              habitsSnap.forEach((docRef) => {
+                loadedHabits.push(docRef.data() as Habit);
+              });
+              setHabits(loadedHabits);
+            }
+
+            // Fetch chatMessages
+            const chatSnap = await getDocs(collection(db, "users", uid, "chatMessages"));
+            if (!chatSnap.empty) {
+              const loadedChats: ChatMessage[] = [];
+              chatSnap.forEach((docRef) => {
+                loadedChats.push(docRef.data() as ChatMessage);
+              });
+              setChatMessages(loadedChats);
+            }
+
+            // Fetch vouchers
+            const voucherSnap = await getDocs(collection(db, "users", uid, "vouchers"));
+            if (!voucherSnap.empty) {
+              const loadedVouchers: string[] = [];
+              voucherSnap.forEach((docRef) => {
+                loadedVouchers.push(docRef.data().code);
+              });
+              setPurchasedVouchers(loadedVouchers);
+            }
+
+            // Fetch pastUploads
+            const uploadSnap = await getDocs(collection(db, "users", uid, "pastUploads"));
+            if (!uploadSnap.empty) {
+              const loadedUploads: string[] = [];
+              uploadSnap.forEach((docRef) => {
+                loadedUploads.push(docRef.data().description);
+              });
+              setPastApprovedDescriptions(loadedUploads);
+            }
+          } else {
+            // Initialize user doc in Firestore
+            await setDoc(userDocRef, {
+              points,
+              streak,
+              updatedAt: new Date().toISOString()
+            });
+
+            // Write current local state items as initials
+            for (const h of habits) {
+              await setDoc(doc(db, "users", uid, "habits", h.id), h);
+            }
+
+            for (const c of chatMessages) {
+              await setDoc(doc(db, "users", uid, "chatMessages", c.id), c);
+            }
+
+            for (const v of purchasedVouchers) {
+              const safeId = v.replace(/[^a-zA-Z0-9_\-]/g, "_").slice(0, 50);
+              await setDoc(doc(db, "users", uid, "vouchers", safeId || "voucher_default"), { code: v });
+            }
+
+            for (const p of pastApprovedDescriptions) {
+              const safeId = p.replace(/[^a-zA-Z0-9_\-]/g, "_").slice(0, 50);
+              await setDoc(doc(db, "users", uid, "pastUploads", safeId || "upload_default"), { description: p });
+            }
+          }
+        } catch (error) {
+          console.error("Firestore loading failure:", error);
+          try {
+            handleFirestoreError(error, OperationType.GET, `users/${uid}`);
+          } catch (e) {
+            // ignore
+          }
+        } finally {
+          setIsSyncing(false);
+        }
+      }
+      setIsAuthLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Safe Firestore updates triggers on changes
+  useEffect(() => {
+    if (!user || isAuthLoading || isSyncing) return;
+    const saveHabits = async () => {
+      try {
+        for (const h of habits) {
+          await setDoc(doc(db, "users", user.uid, "habits", h.id), h);
+        }
+      } catch (err) {
+        console.error("Error backing up habits:", err);
+      }
+    };
+    saveHabits();
+  }, [habits, user, isAuthLoading, isSyncing]);
+
+  useEffect(() => {
+    if (!user || isAuthLoading || isSyncing) return;
+    const saveProfile = async () => {
+      try {
+        await setDoc(doc(db, "users", user.uid), {
+          points,
+          streak,
+          updatedAt: new Date().toISOString()
+        });
+      } catch (err) {
+        console.error("Error backing up profile stats:", err);
+      }
+    };
+    saveProfile();
+  }, [points, streak, user, isAuthLoading, isSyncing]);
+
+  useEffect(() => {
+    if (!user || isAuthLoading || isSyncing) return;
+    const saveChats = async () => {
+      try {
+        for (const chat of chatMessages) {
+          await setDoc(doc(db, "users", user.uid, "chatMessages", chat.id), chat);
+        }
+      } catch (err) {
+        console.error("Error backing up chat history:", err);
+      }
+    };
+    saveChats();
+  }, [chatMessages, user, isAuthLoading, isSyncing]);
+
+  useEffect(() => {
+    if (!user || isAuthLoading || isSyncing) return;
+    const saveVouchers = async () => {
+      try {
+        for (const v of purchasedVouchers) {
+          const safeId = v.replace(/[^a-zA-Z0-9_\-]/g, "_").slice(0, 50);
+          await setDoc(doc(db, "users", user.uid, "vouchers", safeId || "voucher_default"), { code: v });
+        }
+      } catch (err) {
+        console.error("Error backing up rewards:", err);
+      }
+    };
+    saveVouchers();
+  }, [purchasedVouchers, user, isAuthLoading, isSyncing]);
+
+  useEffect(() => {
+    if (!user || isAuthLoading || isSyncing) return;
+    const saveUploads = async () => {
+      try {
+        for (const p of pastApprovedDescriptions) {
+          const safeId = p.replace(/[^a-zA-Z0-9_\-]/g, "_").slice(0, 50);
+          await setDoc(doc(db, "users", user.uid, "pastUploads", safeId || "upload_default"), { description: p });
+        }
+      } catch (err) {
+        console.error("Error backing up notes:", err);
+      }
+    };
+    saveUploads();
+  }, [pastApprovedDescriptions, user, isAuthLoading, isSyncing]);
+
   // --- Real / Simulated Clock Sync ---
   useEffect(() => {
     const interval = setInterval(() => {
@@ -806,8 +1008,15 @@ export default function App() {
     setShowAddModal(false);
   };
 
-  const handleDeleteHabit = (id: string) => {
+  const handleDeleteHabit = async (id: string) => {
     setHabits((prev) => prev.filter((h) => h.id !== id));
+    if (user) {
+      try {
+        await deleteDoc(doc(db, "users", user.uid, "habits", id));
+      } catch (err) {
+        console.error("Error deleting habit from Firestore:", err);
+      }
+    }
   };
 
   const toggleManualComplete = (id: string) => {
@@ -1103,6 +1312,58 @@ export default function App() {
               <p className="text-sm font-mono font-black">{streak}</p>
               <p className="text-[8px] text-amber-500 tracking-wider font-extrabold uppercase">STREAK</p>
             </div>
+          </div>
+
+          {/* FIREBASE AUTH PROFILE CONTAINER */}
+          <div className="flex items-center gap-2 border-l border-slate-800 pl-4">
+            {isAuthLoading ? (
+              <div className="text-xs font-mono text-slate-500">Checking Auth...</div>
+            ) : user ? (
+              <div className="flex items-center gap-2.5">
+                {user.photoURL ? (
+                  <img 
+                    src={user.photoURL} 
+                    alt={user.displayName || "User"} 
+                    className="w-8 h-8 rounded-full border border-indigo-500"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="w-8 h-8 bg-indigo-600 rounded-full flex items-center justify-center text-xs font-bold text-white">
+                    {user.displayName ? user.displayName[0].toUpperCase() : "U"}
+                  </div>
+                )}
+                <div className="text-left leading-tight">
+                  <p className="text-xs font-extrabold text-slate-100 max-w-[80px] truncate">{user.displayName || "Guarded User"}</p>
+                  <button 
+                    onClick={async () => {
+                      try {
+                        await signOut(auth);
+                      } catch (err) {
+                        console.error("Sign out error", err);
+                      }
+                    }}
+                    className="text-[9px] font-black text-rose-450 hover:text-rose-450 uppercase tracking-widest cursor-pointer block"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={async () => {
+                  try {
+                    const provider = new GoogleAuthProvider();
+                    await signInWithPopup(auth, provider);
+                  } catch (err) {
+                    console.error("Google login failed", err);
+                  }
+                }}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 border border-indigo-500/60 font-black text-xs uppercase tracking-widest text-white transition-all cursor-pointer shadow-md shadow-indigo-950"
+              >
+                <User className="w-3.5 h-3.5" />
+                Connect Firebase
+              </button>
+            )}
           </div>
         </div>
       </header>
