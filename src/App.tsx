@@ -1164,6 +1164,11 @@ export default function App() {
         }),
       });
 
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || `Server responded with status ${response.status}`);
+      }
+
       const data = await response.json();
       
       const assistantMessage: ChatMessage = {
@@ -1176,7 +1181,7 @@ export default function App() {
       setChatMessages((prev) => [...prev, assistantMessage]);
     } catch (err: any) {
       console.error(err);
-      appendAssistantMessage("I'm experiencing custom endpoint connection trouble. Don't worry, stay focused on your studies!");
+      appendAssistantMessage(`I'm experiencing custom endpoint connection trouble: ${err.message || err}. Don't worry, stay focused on your studies!`);
     } finally {
       setIsSendingChat(false);
     }

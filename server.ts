@@ -47,6 +47,62 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "healthy", time: new Date().toISOString() });
 });
 
+/**
+ * Generates content using GoogleGenAI, attempting fallbacks if the primary model is unavailable
+ * or rate limited. This ensures high reliability to bypass 503 / UNAVAILABLE spikes.
+ */
+async function generateContentWithFallback(
+  ai: GoogleGenAI,
+  params: {
+    contents: any;
+    config?: any;
+    primaryModel?: string;
+  }
+) {
+  const modelsToTry = [
+    params.primaryModel || "gemini-3.5-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-flash-latest"
+  ];
+
+  let lastError: any = null;
+
+  for (const model of modelsToTry) {
+    try {
+      console.log(`[Gemini Fallback] Attempting content generation with model: ${model}`);
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: params.contents,
+        config: params.config
+      });
+      console.log(`[Gemini Fallback] Successfully generated content using model: ${model}`);
+      return response;
+    } catch (err: any) {
+      console.warn(`[Gemini Fallback] Model ${model} failed:`, err?.message || err);
+      lastError = err;
+      
+      const errMsg = String(err?.message || err).toLowerCase();
+      // If it's a 503, 429, unavailable, resource limiting, or model-not-found error, try the next fallback model.
+      if (
+        errMsg.includes("503") ||
+        errMsg.includes("429") ||
+        errMsg.includes("unavailable") ||
+        errMsg.includes("resource_exhausted") ||
+        errMsg.includes("not found") ||
+        errMsg.includes("limit")
+      ) {
+        continue;
+      }
+      
+      // For developer typos, syntax or schema validations, throw immediately instead of falling back
+      throw err;
+    }
+  }
+
+  // If all tried models failed, throw the last received error
+  throw lastError || new Error("All models failed to generate content.");
+}
+
 // API: Chat Assistant
 app.post("/api/gemini/chat", async (req, res) => {
   try {
@@ -57,14 +113,36 @@ app.post("/api/gemini/chat", async (req, res) => {
 
     const ai = getGeminiClient();
     
-    // Map existing history into standard structure
-    const formattedContents = messages.map((m: any) => ({
-      role: m.role === "assistant" ? "model" : "user",
-      parts: [{ text: m.content || "" }]
-    }));
+    // Map with merging logic to enforce strict alternating "user" / "model" role sequence
+    // which is required by Gemini generateContent API
+    const formattedContents: any[] = [];
+    for (const m of messages) {
+      if (!m || typeof m !== "object") continue;
+      const role = m.role === "assistant" ? "model" : "user";
+      const text = m.content || "";
+      if (!text.trim()) continue;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+      const lastIdx = formattedContents.length - 1;
+      if (lastIdx >= 0 && formattedContents[lastIdx].role === role) {
+        formattedContents[lastIdx].parts[0].text += "\n" + text;
+      } else {
+        formattedContents.push({
+          role,
+          parts: [{ text }]
+        });
+      }
+    }
+
+    // Default message fallback if list empty
+    if (formattedContents.length === 0) {
+      formattedContents.push({
+        role: "user",
+        parts: [{ text: "Hello!" }]
+      });
+    }
+
+    const response = await generateContentWithFallback(ai, {
+      primaryModel: "gemini-3.5-flash",
       contents: formattedContents,
       config: {
         systemInstruction: "You are the Habit Guard AI - a highly supportive, witty, and slightly cheeky personal growth partner that helps users track their habits, limit their screen time, and complete work without cheating. Be realistic, humorous, and deeply encouraging. Help them manage their goals, explain the importance of phone lock scheduled times, and guide them on getting their streak points. Keep responses relatively brief and highly readable."
@@ -147,8 +225,8 @@ Please process this photo and respond strictly with a valid JSON object matching
 Do not return any markdown formatting outside of the JSON object. Just return the raw JSON text.
 `;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
+    const response = await generateContentWithFallback(ai, {
+      primaryModel: "gemini-3.5-flash",
       contents: [imagePart, { text: promptText }],
       config: {
         responseMimeType: "application/json"
